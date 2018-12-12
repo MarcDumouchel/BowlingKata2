@@ -9,5 +9,5 @@ void Game::Roll(int i) {
 }
 
 int Game::ScoreGame() {
-return -1;
+return 0;
 }
