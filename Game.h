@@ -7,6 +7,8 @@
 
 
 class Game {
+    int aggregateScore=0;
+    int rollNumber =1;
 
 public:
     void Roll(int i);
