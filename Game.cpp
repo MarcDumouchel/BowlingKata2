@@ -9,7 +9,13 @@
 void Game::Roll(int i)
 {
     rolls[currentRoll] = i;
-    currentRoll++;
+//    if(currentRoll == 0 && i == 10)
+//    {
+//        currentRoll +=2;
+//    }
+//    else {
+        currentRoll++;
+//    }
 }
 /**
  *
@@ -20,17 +26,31 @@ int Game::ScoreGame() {
     int rollNum =0;
     for(int frame=0; frame <10; frame++)
     {
-        if(IsSpare(rollNum))//spare
+        if(rolls[rollNum] == 10)//strike
+        {
+//            aggregateScore += 10 + rolls[rollNum +2] + rolls[rollNum +3];
+            aggregateScore += rolls[rollNum] + rolls[rollNum +1] + rolls[rollNum +2];
+            rollNum+= 1;
+        }
+        else if(IsSpare(rollNum))//spare
         {
             aggregateScore += 10 + rolls[rollNum + 2];
-        } else {
+            rollNum += 2;
+        } else
+            {
             aggregateScore += rolls[rollNum] + rolls[rollNum+1];
+                rollNum += 2;
         }
         //Scoring per game
-        rollNum+=2;
+//        rollNum+=2;
     }
 
     return aggregateScore;
+}
+
+Game::Game() {
+    currentRoll =0;
+    rolls.fill(0);
 }
 
 bool Game::IsSpare(int frameIndex) const {

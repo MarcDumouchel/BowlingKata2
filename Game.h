@@ -11,6 +11,8 @@ class Game {
     std::array<int, 21> rolls;
 
 public:
+    Game();
+
     void Roll(int i);
     int ScoreGame();
     bool IsSpare(int frameIndex) const;

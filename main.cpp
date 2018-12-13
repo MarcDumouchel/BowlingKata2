@@ -56,3 +56,34 @@ TEST_CASE("Single spare game returns 16", "[score]")
     //Assert
     REQUIRE(16 == g.ScoreGame());
 }
+
+TEST_CASE("First strike followed by 3 and 4 returns 24", "[score]")
+{
+    //Arrange
+    Game g;
+    int pins =0;
+    //Act
+    g.Roll(10);
+    g.Roll(3);
+    g.Roll(4);
+    for(int frame = 3; frame < 20; frame++)
+    {
+        g.Roll(pins);
+    }
+    //Assert
+    REQUIRE(24 == g.ScoreGame());
+}
+
+TEST_CASE("All Strikes results in 300", "[score]")
+{
+    //Arrange
+    Game g;
+    int pins =10;
+    //Act
+    for(int frame = 0; frame < 12; frame++)
+    {
+        g.Roll(pins);
+    }
+    //Assert
+    REQUIRE(300 == g.ScoreGame());
+}
